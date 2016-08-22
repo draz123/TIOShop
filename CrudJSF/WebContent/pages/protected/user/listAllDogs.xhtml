@@ -9,10 +9,15 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h3>#{msgs.loginHello}: #{userMB.user.name} || <h:commandLink action="#{userMB.logOut()}" value="#{msgs.logout}" /> </h3>
-	
+		<h3>
+			#{msgs.loginHello}: #{userMB.user.name} ||
+			<h:commandLink action="#{userMB.logOut()}" value="#{msgs.logout}" />
+		</h3>
+
 		<h:messages />
-		<h:dataTable value="#{dogMB.allDogs}" var="dog" styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" >
+		<h:dataTable value="#{dogMB.allDogs}" var="dog" styleClass="table"
+			headerClass="tableColumnsHeader"
+			rowClasses="tableFirstLine,tableNextLine">
 			<h:column>
 				<f:facet name="header">
 					#{msgs.dogName}
@@ -31,11 +36,13 @@
 				<h:panelGrid columns="2">
 					<!-- Always save the id as hidden when you use a request scope MB -->
 					<h:inputHidden value="#{dog.id}" />
-					
-					<h:commandButton action="#{dogMB.updateDogStart()}" value="#{msgs.update}" rendered="#{userMB.userAdmin}" >
+
+					<h:commandButton action="#{dogMB.updateDogStart()}"
+						value="#{msgs.update}" rendered="#{userMB.userAdmin}">
 						<f:setPropertyActionListener target="#{dogMB.dog}" value="#{dog}" />
 					</h:commandButton>
-					<h:commandButton action="#{dogMB.deleteDogStart()}" value="#{msgs.delete}" rendered="#{userMB.userAdmin}" >
+					<h:commandButton action="#{dogMB.deleteDogStart()}"
+						value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
 						<f:setPropertyActionListener target="#{dogMB.dog}" value="#{dog}" />
 					</h:commandButton>
 				</h:panelGrid>
@@ -44,5 +51,27 @@
 		<!-- This button is displayed to the user, just to you see the error msg  -->
 		<h:commandButton action="createDog" value="#{msgs.create} #{msgs.dog}" />
 	</h:form>
+
+	<h4>Menu</h4>
+
+	<ul>
+		<ui:repeat value="#{cateringMenuMB.categories}" var="category">
+			<li><h:link value="#{category.name}" outcome="categoryName" />
+				<ul>
+					<ui:repeat value="#{category.meals}" var="meal">
+						<h:commandButton value="Add" type="button" /> 
+						<h:commandButton value="Remove" type="button" />
+						<h:commandButton value="Edit" type="button" />
+						<li><h:link value="#{meal.name}" outcome="mealName" /> <h:link
+								value="     #{meal.price}      " outcome="mealPrice" /> <h:link
+								value="#{meal.ingredients}" outcome="mealName" /> <h:commandButton
+								value="Edit" type="button" /></li>
+					</ui:repeat>
+				</ul></li>
+		</ui:repeat>
+	</ul>
+
+
+
 </h:body>
 </html>

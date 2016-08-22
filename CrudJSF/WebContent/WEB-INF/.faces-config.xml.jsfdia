@@ -14,10 +14,10 @@
  <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="listAllDogs::#pages#protected#user#listAllDogs.xhtml"
-    NAME="output" PATH="/pages/protected/user/listAllDogs.xhtml"
-    TARGET="rules:#pages#protected#user#listAllDogs.xhtml"
-    TITLE="listAllDogs" model-entity="JSFProcessItemOutput"/>
+    ID="createCategory::#pages#protected#admin#createCategory.xhtml"
+    NAME="output" PATH="/pages/protected/admin/createCategory.xhtml"
+    TARGET="rules:#pages#protected#admin#createCategory.xhtml"
+    TITLE="createCategory" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#protected#admin#createDog.xhtml"
@@ -25,19 +25,19 @@
  <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="createDog::#pages#protected#admin#createDog.xhtml" NAME="output"
-    PATH="/pages/protected/admin/createDog.xhtml"
-    TARGET="rules:#pages#protected#admin#createDog.xhtml"
-    TITLE="createDog" model-entity="JSFProcessItemOutput"/>
+    ID="listAllDogs::#pages#protected#user#listAllDogs.xhtml"
+    NAME="output" PATH="/pages/protected/user/listAllDogs.xhtml"
+    TARGET="rules:#pages#protected#user#listAllDogs.xhtml"
+    TITLE="listAllDogs" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="updateDog::#pages#protected#admin#updateDog.xhtml" NAME="output"
-    PATH="/pages/protected/admin/updateDog.xhtml"
-    TARGET="rules:#pages#protected#admin#updateDog.xhtml"
-    TITLE="updateDog" model-entity="JSFProcessItemOutput"/>
+    ID="createDog::#pages#protected#admin#createDog.xhtml" NAME="output"
+    PATH="/pages/protected/admin/createDog.xhtml"
+    TARGET="rules:#pages#protected#admin#createDog.xhtml"
+    TITLE="createDog" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#protected#admin#updateDog.xhtml"
@@ -47,10 +47,21 @@
  <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
+    ID="updateDog::#pages#protected#admin#updateDog.xhtml" NAME="output"
+    PATH="/pages/protected/admin/updateDog.xhtml"
+    TARGET="rules:#pages#protected#admin#updateDog.xhtml"
+    TITLE="updateDog" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
     ID="deleteDog::#pages#protected#admin#deleteDog.xhtml" NAME="output"
     PATH="/pages/protected/admin/deleteDog.xhtml"
     TARGET="rules:#pages#protected#admin#deleteDog.xhtml"
     TITLE="deleteDog" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#createCategory.xhtml"
+  PATH="/pages/protected/admin/createCategory.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

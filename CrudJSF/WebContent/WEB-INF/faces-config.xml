@@ -13,6 +13,13 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+		<navigation-rule>
+		<navigation-case>
+			<from-outcome>createCategory</from-outcome>
+			<to-view-id>/pages/protected/admin/createCategory.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>listAllDogs</from-outcome>

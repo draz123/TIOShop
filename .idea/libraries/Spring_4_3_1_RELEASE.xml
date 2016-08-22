@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="Spring-4.3.1.RELEASE" type="spring">
+    <properties version="4.3.1.RELEASE" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-aspects-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-aop-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-beans-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-context-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-context-support-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-expression-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-instrument-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-instrument-tomcat-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-jms-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-core-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-jdbc-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-oxm-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-orm-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-tx-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-test-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CrudEJB/lib/spring-messaging-4.3.1.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
