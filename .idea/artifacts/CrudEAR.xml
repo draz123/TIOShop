@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact name="CrudEAR">
-    <output-path>$PROJECT_DIR$/out/artifacts/CrudEAR</output-path>
-    <root id="root">
-      <element id="module-output" name="CrudEAR" />
-      <element id="javaee-facet-resources" facet="CrudEAR/javaeeApplication/javaEEApplication" />
-    </root>
-  </artifact>
-</component>
