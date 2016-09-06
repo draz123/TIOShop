@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<h:body> 
+	<h:form>
+		<h:messages/>
+		<h3>Create new meal</h3>
+		<h:panelGrid columns="2" styleClass="panelGrid" rowClasses="panelFirstLine,panelNextLine" >
+			<h:outputLabel for="mealTitle" value="Meal name" />
+			<h:inputText id="mealTitle" value="#{cateringMenuMB.meal.name}" required="true" requiredMessage="Name required" />
+			<h:inputHidden value="#{category}"/> 
+			<h:selectOneMenu value="#{cateringMenuMB.category.id}">
+    		<f:selectItems value="#{cateringMenuMB.allCategories}" var="category" itemValue="#{category.id}" itemLabel="#{category.title}"  />
+			</h:selectOneMenu>
+		</h:panelGrid>
+		
+		<h:panelGrid columns="2">
+			<h:commandButton action="#{cateringMenuMB.createMealEnd()}" value="Add to menu" />
+			<h:commandButton action="#{cateringMenuMB.listMenu()}" value="Cancel" immediate="true" />
+		</h:panelGrid>
+		<br/>
+	</h:form>
+	
+
+	
+</h:body>
+</html>

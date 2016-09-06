@@ -1,59 +1,155 @@
 package com.mb;
 
+import com.facade.CategoryFascade;
+import com.facade.IngredientFascade;
+import com.facade.MealFascade;
+
 import com.model.Category;
+import com.model.Ingredient;
 import com.model.Meal;
 
-import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CateringMenuMB implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private List<Category> categories= new ArrayList<Category>();
+	private static final String STAY_IN_THE_SAME_PAGE = null;
 
-	@PostConstruct
-	public void init() {
-		createDefaultCategories();
-	}
 
-	private void createDefaultCategories() {
-
-		List<Meal> breakfasts = new ArrayList<Meal>();
-		breakfasts.add(new Meal("Jajecznica z kielbasa", 10, new ArrayList<String>(Arrays.asList("jajka", "maslo", "kielbasa"))));
-		breakfasts.add(new Meal("Jedzonko na desce", 5, new ArrayList<String>(Arrays.asList("kielbasa", "chleb", "smalec"))));
-		breakfasts.add(new Meal("Owsianka", 3,new ArrayList<String>(Arrays.asList("mleko", "platki"))));
-		categories.add(new Category("Dania sniadaniowe", (ArrayList<Meal>) breakfasts));
-
-		List<Meal> suppers = new ArrayList<Meal>();
-		suppers.add(new Meal("Sledz dwa smaki", 10, new ArrayList<String>(Arrays.asList("jajka", "maslo", "kielbasa"))));
-		suppers.add(new Meal("Carpaccio z lososia", 5, new ArrayList<String>(Arrays.asList("losos", "i", "nie wiem co"))));
-		suppers.add(new Meal("Serek wedzony z zurawina", 3, new ArrayList<String>(Arrays.asList("ser wedzony", "zurawina"))));
-		categories.add(new Category("Dania sniadaniowe", (ArrayList<Meal>) suppers));
-
-		List<Meal> soups = new ArrayList<Meal>();
-		soups.add(new Meal("Rosol domowy", 10, new ArrayList<String>(Arrays.asList("kura", "woda", "makaron"))));
-		soups.add(new Meal("Zupa grochowa", 5, new ArrayList<String>(Arrays.asList("woda", "groch"))));;
-		soups.add(new Meal("Zurek", 3, new ArrayList<String>(Arrays.asList("mleko", "woda","jajko","kielbasa"))));
-		categories.add(new Category("Dania sniadaniowe", (ArrayList<Meal>) soups));
-
-	}
+	@EJB
+	private CategoryFascade categoryFacade;
 	
-	public void addCategory(String name, List<Meal> meals){
-		
+	@EJB
+	private MealFascade mealFacade;
+
+	@EJB
+	private IngredientFascade ingredientFacade;
+
+	private Category category;
+
+	private Ingredient ingredient;
+
+	public Ingredient getIngredient() {
+		return ingredient;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public void setIngredient(Ingredient ingredient) {
+		this.ingredient = ingredient;
 	}
+
+	private Meal meal;
+
+	public Meal getMeal() {
+		if (meal == null) {
+			meal = new Meal();
+		}
+		return meal;
+	}
+
+	public void setMeal(Meal meal) {
+		this.meal = meal;
+	}
+
+	public Category getCategory() {
+		if (category == null) {
+			category = new Category();
+		}
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public String createCategoryStart() {
+		return "createCategory";
+	}
+
+	public String createCategoryEnd() {
+		try {
+			categoryFacade.save(category);
+		} catch (EJBException e) {
+			sendErrorMessageToUser("Error. Problem with category create operation");
+			return STAY_IN_THE_SAME_PAGE;
+		}
+		sendInfoMessageToUser("Operation Complete: Create");
+		return "listAllDogs";
+	}
+
+	public String createMealEnd() {
+		try {
+			mealFacade.save(meal);
+		} catch (EJBException e) {
+			sendErrorMessageToUser("Error. Problem with meal create operation");
+			return STAY_IN_THE_SAME_PAGE;
+		}
+		sendInfoMessageToUser("Operation Complete: Create");
+		return "listAllDogs";
+	}
+
+	public String listMenu() {
+		return "listAllDogs";
+	}
+
+	public String deleteCategoryStart() {
+		return "deleteCategory";
+	}
+
+	public String deleteCategoryEnd() {
+		try {
+			categoryFacade.delete(category);
+		} catch (EJBException e) {
+			sendErrorMessageToUser("Error. Problem with category delete operation");
+			return STAY_IN_THE_SAME_PAGE;
+		}
+
+		sendInfoMessageToUser("Operation Complete: Delete");
+
+		return "listAllDogs";
+	}
+
+	private void sendInfoMessageToUser(String message) {
+		FacesContext context = getContext();
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+				message, message));
+	}
+
+	private void sendErrorMessageToUser(String message) {
+		FacesContext context = getContext();
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+				message, message));
+	}
+
+	private FacesContext getContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		return context;
+	}
+
+	public String updateCategoryStart() {
+		return "";
+	}
+
+	public List<Category> getAllCategories() {
+		return categoryFacade.findAll();
+	}
+
+	public List<Meal> getAllMeals() {
+		return mealFacade.findAll();
+	}
+
+	public List<Ingredient> getAllIngredients() {
+		return ingredientFacade.findAll();
+	}
+
 
 }

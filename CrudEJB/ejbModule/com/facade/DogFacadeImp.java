@@ -17,7 +17,6 @@ public class DogFacadeImp implements DogFacade {
 	@Override
 	public void save(Dog dog) {
 		isDogWithAllData(dog);
-		
 		dogDAO.save(dog);
 	}
 

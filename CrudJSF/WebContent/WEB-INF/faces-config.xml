@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<faces-config
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-    version="2.0">
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
 
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/pages/protected/user/listAllDogs.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-		<navigation-rule>
-		<navigation-case>
-			<from-outcome>createCategory</from-outcome>
-			<to-view-id>/pages/protected/admin/createCategory.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -30,9 +22,26 @@
 		<navigation-case>
 			<from-outcome>createDog</from-outcome>
 			<to-view-id>/pages/protected/admin/createDog.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>addCategory</from-outcome>
+			<to-view-id>/pages/protected/admin/addCategory.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<navigation-case>
+			<from-outcome>addMeal</from-outcome>
+			<to-view-id>/pages/protected/admin/addMeal.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>updateDog</from-outcome>
@@ -45,6 +54,14 @@
 			<to-view-id>/pages/protected/admin/deleteDog.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteCategory</from-outcome>
+			<to-view-id>/pages/protected/admin/deleteCategory.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 
 	<application>
 		<resource-bundle>

@@ -15,63 +15,84 @@
 		</h3>
 
 		<h:messages />
-		<h:dataTable value="#{dogMB.allDogs}" var="dog" styleClass="table"
-			headerClass="tableColumnsHeader"
-			rowClasses="tableFirstLine,tableNextLine">
-			<h:column>
-				<f:facet name="header">
-					#{msgs.dogName}
-				</f:facet>
-				
-				#{dog.name}
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					#{msgs.dogWeight}
-				</f:facet>
-				
-				#{dog.weight}
-			</h:column>
-			<h:column>
-				<h:panelGrid columns="2">
-					<!-- Always save the id as hidden when you use a request scope MB -->
-					<h:inputHidden value="#{dog.id}" />
 
-					<h:commandButton action="#{dogMB.updateDogStart()}"
-						value="#{msgs.update}" rendered="#{userMB.userAdmin}">
-						<f:setPropertyActionListener target="#{dogMB.dog}" value="#{dog}" />
-					</h:commandButton>
-					<h:commandButton action="#{dogMB.deleteDogStart()}"
-						value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
-						<f:setPropertyActionListener target="#{dogMB.dog}" value="#{dog}" />
-					</h:commandButton>
-				</h:panelGrid>
-			</h:column>
-		</h:dataTable>
-		<!-- This button is displayed to the user, just to you see the error msg  -->
-		<h:commandButton action="createDog" value="#{msgs.create} #{msgs.dog}" />
+		<ul>
+			<h:commandButton value="Add category" action="addCategory" />
+			<h:commandButton value="Add Meal" action="addMeal" />
+			<ui:repeat value="#{cateringMenuMB.allCategories}" var="category">
+				<li><h:dataTable value="#{cateringMenuMB.allMeals}" 
+						var="meal" styleClass="table"
+						headerClass="tableColumnsHeader"
+						rowClasses="tableFirstLine,tableNextLine" 
+						 >
+						<h:inputHidden value="#{category}" />
+						<h:column  >						
+							<f:facet name="header">
+								#{category.title}
+								
+							</f:facet>			
+							</h:column>
+							<h:column >
+							<f:facet name="header">
+							<h:panelGrid columns="4" >
+								<!-- Always save the id as hidden when you use a request scope MB -->
+								<h:commandButton
+									action="#{cateringMenuMB.updateCategoryStart()}"
+									value="#{msgs.update}" rendered="#{userMB.userAdmin}">
+									<f:setPropertyActionListener
+										target="#{cateringMenuMB.category}" value="#{category}" />
+								</h:commandButton>
+								<h:commandButton
+									action="#{cateringMenuMB.deleteCategoryStart()}"
+									value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
+									<f:setPropertyActionListener
+										target="#{cateringMenuMB.category}" value="#{category}" />
+								</h:commandButton>
+							</h:panelGrid>
+							</f:facet>
+							<h:panelGrid columns="4" rendered="#{category.id==meal.category.id}" >
+								<h:outputText value="#{meal.name}" />
+								</h:panelGrid>
+						</h:column>
+						<h:column>
+							<h:panelGrid columns="4" rendered="#{category.id==meal.category.id}" >
+							<ul>
+								<ui:repeat value="#{cateringMenuMB.allIngredients}" var="ingredient">
+									<h:panelGrid columns="4" rendered="#{ingredient.meal.id==meal.id}" >
+										<li><h:outputText value="#{ingredient.name} - #{ingredient.weight}g" /></li>
+									</h:panelGrid>
+								</ui:repeat>
+							</ul>
+								</h:panelGrid>
+						</h:column>
+						<h:column>
+							<h:graphicImage value="/resources/images/kielbasa.png"  
+							width="200" height="150"  
+							rendered="#{category.id==meal.category.id}" />
+						</h:column>
+						<h:column >
+							<h:panelGrid columns="4" rendered="#{category.id==meal.category.id}" >
+								<!-- Always save the id as hidden when you use a request scope MB -->
+								<h:commandButton
+									action="#{cateringMenuMB.updateMealStart()}"
+									value="#{msgs.update}" rendered="#{userMB.userAdmin}">
+									<f:setPropertyActionListener
+										target="#{cateringMenuMB.meal}" value="#{meal}" />
+									<f:setPropertyActionListener
+										target="#{cateringMenuMB.ingredient}" value="#{ingredient}" />	
+								</h:commandButton>
+								<h:commandButton
+									action="#{cateringMenuMB.deleteMealStart()}"
+									value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
+									<f:setPropertyActionListener
+										target="#{cateringMenuMB.category}" value="#{category}" />
+								</h:commandButton>
+							</h:panelGrid>
+						</h:column>
+					</h:dataTable></li>
+			</ui:repeat>
+		</ul>
 	</h:form>
-
-	<h4>Menu</h4>
-
-	<ul>
-		<ui:repeat value="#{cateringMenuMB.categories}" var="category">
-			<li><h:link value="#{category.name}" outcome="categoryName" />
-				<ul>
-					<ui:repeat value="#{category.meals}" var="meal">
-						<h:commandButton value="Add" type="button" /> 
-						<h:commandButton value="Remove" type="button" />
-						<h:commandButton value="Edit" type="button" />
-						<li><h:link value="#{meal.name}" outcome="mealName" /> <h:link
-								value="     #{meal.price}      " outcome="mealPrice" /> <h:link
-								value="#{meal.ingredients}" outcome="mealName" /> <h:commandButton
-								value="Edit" type="button" /></li>
-					</ui:repeat>
-				</ul></li>
-		</ui:repeat>
-	</ul>
-
-
 
 </h:body>
 </html>
