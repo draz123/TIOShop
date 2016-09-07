@@ -46,14 +46,11 @@
 				<h:dataTable value="#{cateringMenuMB.allMeals}" var="meal"
 					styleClass="table" headerClass="tableColumnsHeader"
 					rowClasses="tableFirstLine,tableNextLine">
-					<h:column>
+					<h:column rendered="#{category.id==meal.category.id}">
 						<f:facet name="header">							
 							Meals						
 						</f:facet>
-						<h:panelGrid columns="4"
-							rendered="#{category.id==meal.category.id}">
-							<h:outputText value="#{meal.name}" />
-						</h:panelGrid>
+						<h:outputText value="#{meal.name}" />
 					</h:column>
 					<h:column>
 						<h:panelGrid columns="4"

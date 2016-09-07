@@ -8,21 +8,14 @@
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
-			<to-view-id>/pages/protected/user/listAllDogs.xhtml</to-view-id>
+			<to-view-id>/pages/protected/user/cateringMenu.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
-			<from-outcome>listAllDogs</from-outcome>
-			<to-view-id>/pages/protected/user/listAllDogs.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>createDog</from-outcome>
-			<to-view-id>/pages/protected/admin/createDog.xhtml</to-view-id>
-			<redirect />
+			<from-outcome>cateringMenu</from-outcome>
+			<to-view-id>/pages/protected/user/cateringMenu.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -39,19 +32,6 @@
 			<from-outcome>addMeal</from-outcome>
 			<to-view-id>/pages/protected/admin/addMeal.xhtml</to-view-id>
 			<redirect />
-		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>updateDog</from-outcome>
-			<to-view-id>/pages/protected/admin/updateDog.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>deleteDog</from-outcome>
-			<to-view-id>/pages/protected/admin/deleteDog.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

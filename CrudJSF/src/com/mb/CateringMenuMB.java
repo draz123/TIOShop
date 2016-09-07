@@ -98,7 +98,7 @@ public class CateringMenuMB implements Serializable {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		sendInfoMessageToUser("Operation Complete: Create");
-		return "listAllDogs";
+		return "cateringMenu";
 	}
 
 	public String createMealEnd() {
@@ -134,11 +134,11 @@ public class CateringMenuMB implements Serializable {
 	public String addMealConfirm() {
 		duringAddMealStartFlag = false;
 		duringAddIngredientsFlag = false;
-		return "listAllDogs";
+		return "cateringMenu";
 	}
 
 	public String listMenu() {
-		return "listAllDogs";
+		return "cateringMenu";
 	}
 
 	public String deleteCategoryEnd(Category category1) {

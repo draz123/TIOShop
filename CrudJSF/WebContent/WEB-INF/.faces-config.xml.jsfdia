@@ -3,36 +3,23 @@
  <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="logout::#pages#protected#user#listAllDogs.xhtml" NAME="output"
-    PATH="/pages/protected/user/listAllDogs.xhtml"
-    TARGET="rules:#pages#protected#user#listAllDogs.xhtml"
+    ID="logout::#pages#protected#user#cateringMenu.xhtml" NAME="output"
+    PATH="/pages/protected/user/cateringMenu.xhtml"
+    TARGET="rules:#pages#protected#user#cateringMenu.xhtml"
     TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#protected#user#listAllDogs.xhtml"
-  PATH="/pages/protected/user/listAllDogs.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="listAllDogs::#pages#protected#user#listAllDogs.xhtml"
-    NAME="output" PATH="/pages/protected/user/listAllDogs.xhtml"
-    TARGET="rules:#pages#protected#user#listAllDogs.xhtml"
-    TITLE="listAllDogs" model-entity="JSFProcessItemOutput"/>
+    ID="cateringMenu::#pages#protected#user#cateringMenu.xhtml"
+    NAME="output" PATH="/pages/protected/user/cateringMenu.xhtml"
+    TARGET="rules:#pages#protected#user#cateringMenu.xhtml"
+    TITLE="cateringMenu" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#protected#admin#createDog.xhtml"
-  PATH="/pages/protected/admin/createDog.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="createDog::#pages#protected#admin#createDog.xhtml" NAME="output"
-    PATH="/pages/protected/admin/createDog.xhtml"
-    TARGET="rules:#pages#protected#admin#createDog.xhtml"
-    TITLE="createDog" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
     ID="addCategory::#pages#protected#admin#addCategory.xhtml"
     NAME="output" PATH="/pages/protected/admin/addCategory.xhtml"
@@ -40,42 +27,16 @@
     TITLE="addCategory" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#protected#admin#updateDog.xhtml"
-  PATH="/pages/protected/admin/updateDog.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#pages#protected#admin#deleteDog.xhtml"
-  PATH="/pages/protected/admin/deleteDog.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
     ID="addMeal::#pages#protected#admin#addMeal.xhtml" NAME="output"
     PATH="/pages/protected/admin/addMeal.xhtml"
     TARGET="rules:#pages#protected#admin#addMeal.xhtml" TITLE="addMeal" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="updateDog::#pages#protected#admin#updateDog.xhtml" NAME="output"
-    PATH="/pages/protected/admin/updateDog.xhtml"
-    TARGET="rules:#pages#protected#admin#updateDog.xhtml"
-    TITLE="updateDog" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#protected#admin#addCategory.xhtml"
-  PATH="/pages/protected/admin/addCategory.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules::6" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="deleteDog::#pages#protected#admin#deleteDog.xhtml" NAME="output"
-    PATH="/pages/protected/admin/deleteDog.xhtml"
-    TARGET="rules:#pages#protected#admin#deleteDog.xhtml"
-    TITLE="deleteDog" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#protected#admin#deleteCategory.xhtml"
-  PATH="/pages/protected/admin/deleteCategory.xhtml" SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules::7" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
     ID="deleteCategory::#pages#protected#admin#deleteCategory.xhtml"
     NAME="output" PATH="/pages/protected/admin/deleteCategory.xhtml"
@@ -83,6 +44,12 @@
     TITLE="deleteCategory" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#addCategory.xhtml"
+  PATH="/pages/protected/admin/addCategory.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#deleteCategory.xhtml"
+  PATH="/pages/protected/admin/deleteCategory.xhtml" SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#pages#protected#admin#addMeal.xhtml"
   PATH="/pages/protected/admin/addMeal.xhtml" SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#protected#user#cateringMenu.xhtml"
+  PATH="/pages/protected/user/cateringMenu.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

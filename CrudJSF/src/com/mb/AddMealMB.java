@@ -122,7 +122,7 @@ public class AddMealMB implements Serializable {
 		duringAddMealStartFlag=false;
 		duringAddIngredientsFlag=false;
 		meal=null;
-		return "listAllDogs";
+		return "cateringMenu";
 	}
 
 	private void sendInfoMessageToUser(String message) {
@@ -180,7 +180,7 @@ public class AddMealMB implements Serializable {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		sendInfoMessageToUser("Operation Complete: Create");
-		return "listAllDogs";
+		return "cateringMenu";
 	}
 	
 	public String addMealStart(){
