@@ -12,35 +12,45 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean
-@RequestScoped
-public class CateringMenuMB implements Serializable {
+@SessionScoped
+public class AddMealMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static final String STAY_IN_THE_SAME_PAGE = null;
 
+
 	@EJB
 	private CategoryFascade categoryFacade;
-
+	
 	@EJB
 	private MealFascade mealFacade;
 
 	@EJB
 	private IngredientFascade ingredientFacade;
+	
+	private boolean editFlag;
+	public boolean isEditFlag() {
+		return editFlag;
+	}
+
+	public void setEditFlag(boolean editFlag) {
+		this.editFlag = editFlag;
+	}
 
 	private Category category;
 
 	private Ingredient ingredient;
 
 	public Ingredient getIngredient() {
-		if (ingredient == null) {
-			ingredient = new Ingredient();
+		if(ingredient==null){
+			ingredient=new Ingredient();
 		}
 		return ingredient;
 	}
@@ -73,40 +83,17 @@ public class CateringMenuMB implements Serializable {
 		this.category = category;
 	}
 
-	public String createCategoryStart() {
-		return "createCategory";
-	}
 
-	private boolean editFlag;
-
-	public boolean isEditFlag() {
-		return editFlag;
-	}
-
-	public void setEditFlag(boolean editFlag) {
-		this.editFlag = editFlag;
-	}
-
-	public String createCategoryEnd() {
-		try {
-			if (editFlag)
-				categoryFacade.update(category);
-			else
-				categoryFacade.save(category);
-		} catch (EJBException e) {
-			sendErrorMessageToUser("Error. Problem with category create operation");
-			return STAY_IN_THE_SAME_PAGE;
-		}
-		sendInfoMessageToUser("Operation Complete: Create");
-		return "listAllDogs";
-	}
 
 	public String createMealEnd() {
 		try {
-			duringAddMealStartFlag = false;
-			duringAddIngredientsFlag = true;
+			duringAddMealStartFlag=false;
+			duringAddIngredientsFlag=true;
 			meal.setCategoryID(category);
-			mealFacade.save(meal);
+			if(editFlag)
+				mealFacade.update(meal);
+			else
+				mealFacade.save(meal);
 		} catch (EJBException e) {
 			sendErrorMessageToUser("Error. Problem with meal create operation");
 			return STAY_IN_THE_SAME_PAGE;
@@ -114,7 +101,7 @@ public class CateringMenuMB implements Serializable {
 		sendInfoMessageToUser("Operation Complete: Create");
 		return STAY_IN_THE_SAME_PAGE;
 	}
-
+	
 	public boolean isDuringAddMealStartFlag() {
 		return duringAddMealStartFlag;
 	}
@@ -131,37 +118,11 @@ public class CateringMenuMB implements Serializable {
 		this.duringAddMealStartFlag = addMealFlag;
 	}
 
-	public String addMealConfirm() {
-		duringAddMealStartFlag = false;
-		duringAddIngredientsFlag = false;
-		return "listAllDogs";
-	}
-
 	public String listMenu() {
+		duringAddMealStartFlag=false;
+		duringAddIngredientsFlag=false;
+		meal=null;
 		return "listAllDogs";
-	}
-
-	public String deleteCategoryEnd(Category category1) {
-		for (Meal meal : mealFacade.findAll()) {
-			if (category1.getId() == meal.getCategory().getId()) {
-				for (Ingredient ingredient : ingredientFacade.findAll()) {
-					if (meal.getId() == ingredient.getMeal().getId()) {
-						ingredientFacade.delete(ingredient);
-					}
-				}
-				mealFacade.delete(meal);
-			}
-		}
-		try {
-			categoryFacade.delete(category1);
-		} catch (EJBException e) {
-			sendErrorMessageToUser("Error. Problem with category delete operation");
-			return STAY_IN_THE_SAME_PAGE;
-		}
-
-		sendInfoMessageToUser("Operation Complete: Delete");
-
-		return "STAY_IN_THE_SAME_PAGE";
 	}
 
 	private void sendInfoMessageToUser(String message) {
@@ -182,7 +143,6 @@ public class CateringMenuMB implements Serializable {
 	}
 
 	public String updateCategoryStart() {
-
 		return "";
 	}
 
@@ -200,7 +160,7 @@ public class CateringMenuMB implements Serializable {
 
 	private boolean duringAddMealStartFlag;
 	private boolean duringAddIngredientsFlag;
-
+	
 	public boolean isDuringAddIngredientsFlag() {
 		return duringAddIngredientsFlag;
 	}
@@ -209,29 +169,34 @@ public class CateringMenuMB implements Serializable {
 		this.duringAddIngredientsFlag = duringAddIngredientsFlag;
 	}
 
-	public String addMealStart() {
-		duringAddMealStartFlag = true;
+	public String createCategoryEnd() {
+		try {
+			if (editFlag)
+				categoryFacade.update(category);
+			else
+				categoryFacade.save(category);
+		} catch (EJBException e) {
+			sendErrorMessageToUser("Error. Problem with category create operation");
+			return STAY_IN_THE_SAME_PAGE;
+		}
+		sendInfoMessageToUser("Operation Complete: Create");
+		return "listAllDogs";
+	}
+	
+	public String addMealStart(){
+		duringAddMealStartFlag=true;
 		return "addMeal";
 	}
-
-	public String deleteMealStart(Meal meal) {
-		for (Ingredient ingredient : ingredientFacade.findAll()) {
-			if (meal.getId() == ingredient.getMeal().getId()) {
-				ingredientFacade.delete(ingredient);
-			}
-		}
-		mealFacade.delete(meal);
+	public String addIngredient(){
+		ingredient.setMeal(meal);
+		ingredientFacade.save(ingredient);
+		ingredient=null;
 		return STAY_IN_THE_SAME_PAGE;
 	}
 
-	public void addIngredient() {
-		ingredientFacade.save(ingredient);
-		ingredient = null;
-	}
-
-	public String deleteIngredient(Ingredient ingredient) {
+	public String deleteIngredient(Ingredient ingredient){
 		ingredientFacade.delete(ingredient);
-		ingredient = null;
+		ingredient=null;
 		return STAY_IN_THE_SAME_PAGE;
 	}
 

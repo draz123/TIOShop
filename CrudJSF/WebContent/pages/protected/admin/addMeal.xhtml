@@ -4,30 +4,84 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:head>
 	<h:outputStylesheet library="css" name="main.css" />
 </h:head>
-<h:body> 
+<h:body>
 	<h:form>
-		<h:messages/>
-		<h3>Create new meal</h3>
-		<h:panelGrid columns="2" styleClass="panelGrid" rowClasses="panelFirstLine,panelNextLine" >
+		<h:messages />
+		<h2>MEAL EDITOR</h2>
+		<h:panelGrid columns="4" styleClass="panelGrid"
+			rendered="#{addMealMB.duringAddMealStartFlag}"
+			rowClasses="panelFirstLine,panelNextLine">
 			<h:outputLabel for="mealTitle" value="Meal name" />
-			<h:inputText id="mealTitle" value="#{cateringMenuMB.meal.name}" required="true" requiredMessage="Name required" />
-			<h:inputHidden value="#{category}"/> 
-			<h:selectOneMenu value="#{cateringMenuMB.category.id}">
-    		<f:selectItems value="#{cateringMenuMB.allCategories}" var="category" itemValue="#{category.id}" itemLabel="#{category.title}"  />
+			<h:inputText id="mealTitle" value="#{addMealMB.meal.name}"
+				required="true" />
+			<h:inputHidden value="#{category}" />
+			<h:selectOneMenu value="#{addMealMB.category.id}">
+				<f:selectItems value="#{addMealMB.allCategories}" var="category"
+					itemValue="#{category.id}" itemLabel="#{category.title}" />
 			</h:selectOneMenu>
-		</h:panelGrid>
-		
-		<h:panelGrid columns="2">
-			<h:commandButton action="#{cateringMenuMB.createMealEnd()}" value="Add to menu" />
-			<h:commandButton action="#{cateringMenuMB.listMenu()}" value="Cancel" immediate="true" />
-		</h:panelGrid>
-		<br/>
-	</h:form>
-	
 
-	
+			<h:commandButton value="Next" action="#{addMealMB.createMealEnd()}">
+			</h:commandButton>
+			<h:commandButton action="#{addMealMB.listMenu()}" value="Cancel"
+				immediate="true" />
+		</h:panelGrid>
+		<h:panelGrid id="ingredients"
+			rendered="#{addMealMB.duringAddIngredientsFlag}">
+			<h3>Meal name: #{addMealMB.meal.name}</h3>
+			<h:dataTable id="data" value="#{addMealMB.allIngredients}"
+				var="tIngredient" styleClass="order-table"
+				headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<h:panelGrid rendered="#{tIngredient.meal.id==addMealMB.meal.id}">
+						<f:facet name="header">Ingredient name :</f:facet>
+    			#{tIngredient.name}
+    			</h:panelGrid>
+				</h:column>
+				<h:column>
+					<h:panelGrid rendered="#{tIngredient.meal.id==addMealMB.meal.id}">
+						<f:facet name="header">Ingredient weight :</f:facet>
+    			#{tIngredient.weight}
+    					</h:panelGrid>
+				</h:column>
+				<h:column>
+					<h:panelGrid rendered="#{tIngredient.meal.id==addMealMB.meal.id}">
+						<f:facet name="header">Action</f:facet>
+						<h:commandLink value="Delete"
+							action="#{addMealMB.deleteIngredient(tIngredient)}"
+							immediate="true" />
+					</h:panelGrid>
+				</h:column>
+			</h:dataTable>
+			<h2>Enter ingredients</h2>
+			<table>
+				<tr>
+					<td>Ingredient name :</td>
+					<td><h:inputText size="10"
+							value="#{addMealMB.ingredient.name}" required="true" /></td>
+				</tr>
+				<tr>
+					<td>Ingredient weight :</td>
+					<td><h:inputText size="20"
+							value="#{addMealMB.ingredient.weight}" required="true">
+							<f:convertNumber />
+						</h:inputText></td>
+				</tr>
+			</table>
+			<h:commandButton value="Add" action="#{addMealMB.addIngredient}"
+				update="data" />
+			<h:panelGrid columns="1">
+				<h:commandButton action="#{addMealMB.listMenu()}" value="Return"
+					immediate="true" />
+			</h:panelGrid>
+			<br />
+		</h:panelGrid>
+	</h:form>
+
+
 </h:body>
 </html>

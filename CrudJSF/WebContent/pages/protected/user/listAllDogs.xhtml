@@ -16,83 +16,86 @@
 
 		<h:messages />
 
-		<ul>
-			<h:commandButton value="Add category" action="addCategory" />
-			<h:commandButton value="Add Meal" action="addMeal" />
-			<ui:repeat value="#{cateringMenuMB.allCategories}" var="category">
-				<li><h:dataTable value="#{cateringMenuMB.allMeals}" 
-						var="meal" styleClass="table"
-						headerClass="tableColumnsHeader"
-						rowClasses="tableFirstLine,tableNextLine" 
-						 >
-						<h:inputHidden value="#{category}" />
-						<h:column  >						
-							<f:facet name="header">
-								#{category.title}
-								
-							</f:facet>			
-							</h:column>
-							<h:column >
-							<f:facet name="header">
-							<h:panelGrid columns="4" >
-								<!-- Always save the id as hidden when you use a request scope MB -->
-								<h:commandButton
-									action="#{cateringMenuMB.updateCategoryStart()}"
-									value="#{msgs.update}" rendered="#{userMB.userAdmin}">
-									<f:setPropertyActionListener
-										target="#{cateringMenuMB.category}" value="#{category}" />
-								</h:commandButton>
-								<h:commandButton
-									action="#{cateringMenuMB.deleteCategoryStart()}"
-									value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
-									<f:setPropertyActionListener
-										target="#{cateringMenuMB.category}" value="#{category}" />
-								</h:commandButton>
-							</h:panelGrid>
-							</f:facet>
-							<h:panelGrid columns="4" rendered="#{category.id==meal.category.id}" >
-								<h:outputText value="#{meal.name}" />
-								</h:panelGrid>
-						</h:column>
-						<h:column>
-							<h:panelGrid columns="4" rendered="#{category.id==meal.category.id}" >
+
+		<h:commandButton value="Add category" action="addCategory" />
+		<h:commandButton value="Add Meal" action="#{addMealMB.addMealStart()}" />
+
+		<h:dataTable value="#{cateringMenuMB.allCategories}" var="category"
+			styleClass="table" headerClass="tableColumnsHeader"
+			rowClasses="tableFirstLine,tableNextLine">
+			<h:column>
+				<f:facet name="header">
+					Categories								
+				</f:facet>
+					#{category.title}
+			</h:column>
+			<h:column>
+				<h:commandButton action="addCategory" value="#{msgs.update}"
+					rendered="#{userMB.userAdmin}">
+					<f:setPropertyActionListener target="#{addMealMB.editFlag}"
+						value="true" />
+					<f:setPropertyActionListener target="#{addMealMB.category}"
+						value="#{category}" />
+				</h:commandButton>
+				<h:commandButton
+					action="#{cateringMenuMB.deleteCategoryEnd(category)}"
+					value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
+				</h:commandButton>
+			</h:column>
+			<h:column>
+				<h:dataTable value="#{cateringMenuMB.allMeals}" var="meal"
+					styleClass="table" headerClass="tableColumnsHeader"
+					rowClasses="tableFirstLine,tableNextLine">
+					<h:column>
+						<f:facet name="header">							
+							Meals						
+						</f:facet>
+						<h:panelGrid columns="4"
+							rendered="#{category.id==meal.category.id}">
+							<h:outputText value="#{meal.name}" />
+						</h:panelGrid>
+					</h:column>
+					<h:column>
+						<h:panelGrid columns="4"
+							rendered="#{category.id==meal.category.id}">
 							<ul>
-								<ui:repeat value="#{cateringMenuMB.allIngredients}" var="ingredient">
-									<h:panelGrid columns="4" rendered="#{ingredient.meal.id==meal.id}" >
-										<li><h:outputText value="#{ingredient.name} - #{ingredient.weight}g" /></li>
+								<ui:repeat value="#{cateringMenuMB.allIngredients}"
+									var="ingredient">
+									<h:panelGrid columns="4"
+										rendered="#{ingredient.meal.id==meal.id}">
+										<li><h:outputText
+												value="#{ingredient.name} - #{ingredient.weight}g" /></li>
 									</h:panelGrid>
 								</ui:repeat>
 							</ul>
-								</h:panelGrid>
-						</h:column>
-						<h:column>
-							<h:graphicImage value="/resources/images/kielbasa.png"  
-							width="200" height="150"  
-							rendered="#{category.id==meal.category.id}" />
-						</h:column>
-						<h:column >
-							<h:panelGrid columns="4" rendered="#{category.id==meal.category.id}" >
-								<!-- Always save the id as hidden when you use a request scope MB -->
-								<h:commandButton
-									action="#{cateringMenuMB.updateMealStart()}"
-									value="#{msgs.update}" rendered="#{userMB.userAdmin}">
-									<f:setPropertyActionListener
-										target="#{cateringMenuMB.meal}" value="#{meal}" />
-									<f:setPropertyActionListener
-										target="#{cateringMenuMB.ingredient}" value="#{ingredient}" />	
-								</h:commandButton>
-								<h:commandButton
-									action="#{cateringMenuMB.deleteMealStart()}"
-									value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
-									<f:setPropertyActionListener
-										target="#{cateringMenuMB.category}" value="#{category}" />
-								</h:commandButton>
-							</h:panelGrid>
-						</h:column>
-					</h:dataTable></li>
-			</ui:repeat>
-		</ul>
-	</h:form>
+						</h:panelGrid>
+					</h:column>
+					<h:column>
+						<h:graphicImage value="/resources/images/kielbasa.png" width="200"
+							height="150" rendered="#{category.id==meal.category.id}" />
+					</h:column>
+					<h:column>
+						<h:panelGrid columns="4"
+							rendered="#{category.id==meal.category.id}">
+							<!-- Always save the id as hidden when you use a request scope MB -->
+							<h:commandButton action="#{addMealMB.addMealStart()}"
+								value="#{msgs.update}" rendered="#{userMB.userAdmin}">
+								<f:setPropertyActionListener target="#{addMealMB.meal}"
+									value="#{meal}" />
+								<f:setPropertyActionListener target="#{addMealMB.editFlag}"
+									value="true" />
 
+							</h:commandButton>
+							<h:commandButton action="#{cateringMenuMB.deleteMealStart(meal)}"
+								value="#{msgs.delete}" rendered="#{userMB.userAdmin}">
+								<f:setPropertyActionListener target="#{cateringMenuMB.category}"
+									value="#{category}" />
+							</h:commandButton>
+						</h:panelGrid>
+					</h:column>
+				</h:dataTable>
+			</h:column>
+		</h:dataTable>
+	</h:form>
 </h:body>
 </html>

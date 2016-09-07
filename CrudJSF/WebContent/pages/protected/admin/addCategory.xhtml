@@ -13,11 +13,11 @@
 		<h3>Create new category</h3>
 		<h:panelGrid columns="2" styleClass="panelGrid" rowClasses="panelFirstLine,panelNextLine" >
 			<h:outputLabel for="categoryTitle" value="Category name" />
-			<h:inputText id="categoryTitle" value="#{cateringMenuMB.category.title}" required="true" requiredMessage="Name required" />
+			<h:inputText id="categoryTitle" value="#{addMealMB.category.title}" required="true" requiredMessage="Name required" />
 		</h:panelGrid>
 		<h:panelGrid columns="2">
-			<h:commandButton action="#{cateringMenuMB.createCategoryEnd()}" value="Add to menu" />
-			<h:commandButton action="#{cateringMenuMB.listMenu()}" value="Cancel" immediate="true" />
+			<h:commandButton action="#{addMealMB.createCategoryEnd()}" value="Add to menu" />
+			<h:commandButton action="#{addMealMB.listMenu()}" value="Cancel" immediate="true" />
 		</h:panelGrid>
 		<br/>
 	</h:form>

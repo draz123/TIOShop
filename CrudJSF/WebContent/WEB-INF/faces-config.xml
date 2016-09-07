@@ -33,8 +33,8 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
-		<navigation-rule>
+
+	<navigation-rule>
 		<navigation-case>
 			<from-outcome>addMeal</from-outcome>
 			<to-view-id>/pages/protected/admin/addMeal.xhtml</to-view-id>
