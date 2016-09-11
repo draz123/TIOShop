@@ -8,10 +8,11 @@ import com.model.Ingredient;
 public class IngredientDAO extends GenericDAO<Ingredient> {
 
     public IngredientDAO() {
-	super(Ingredient.class);
+    	super(Ingredient.class);
     }
     
     public void delete(Ingredient ingredient) {
         super.delete(ingredient.getId(), Ingredient.class);
     }
+    
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xml:lang="en" lang="en">
+<h:body>
+    <ui:composition>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h:form>
+                        <p:growl id="messages"/>
+                        <p:menubar id="headerCartSize">
+                            <p:submenu label="Home"  icon="ui-icon-user">
+                                <p:menuitem value="Menu catalog" url="/pages/protected/user/categories.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                                <p:menuitem value="Orders" url="/pages/protected/user/orderHistory.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                                <p:menuitem value="Add category" url="/pages/protected/admin/addCategory.xhtml" icon="ui-icon-arrowreturnthick-1-w" rendered="#{userMB.userMenuManager}" />
+                                <p:menuitem value="Add dish" url="/pages/protected/admin/addDish.xhtml" icon="ui-icon-arrowreturnthick-1-w" rendered="#{userMB.userMenuManager}"/>                
+                            </p:submenu>
+                            <p:submenu label="Account" icon="ui-icon-user">
+                                <p:menuitem value="Change account password" url="/pages/protected/user/changePassword.xhtml" icon="ui-icon-arrowreturnthick-1-w" />                                                       
+                                <p:menuitem value="Change user's password" url="/pages/protected/user/changeUserPassword.xhtml" icon="ui-icon-arrowreturnthick-1-w" rendered="#{userMB.userAdmin}"/>                         
+                            </p:submenu>
+                            <p:menuitem value="Orders value: #{orderController.orderPrice}" url="/pages/protected/user/orders.xhtml"/>
+                            <p:menuitem action="#{userMB.logOut()}" value="#{msgs.logout}"/>
+                            
+                        </p:menubar>
+                        <p:menubar rendered="piate">
+                            <p:menuitem value="Login" url="/public/login.xhtml"/>
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</h:body>
+</html>

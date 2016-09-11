@@ -9,14 +9,15 @@ import com.dao.IngredientDAO;
 import com.model.Ingredient;
 
 @Stateless
-public class IngredientFacadeImp implements IngredientFascade {
+public class IngredientFacadeImp implements IngredientFacade {
 	
 	@EJB
 	private IngredientDAO ingredientDAO;
 	
 	@Override
 	public void save(Ingredient ingredient) {
-		isIngredientWithAllData(ingredient);		
+		isIngredientWithAllData(ingredient);
+		
 		ingredientDAO.save(ingredient);
 	}
 
@@ -49,14 +50,12 @@ public class IngredientFacadeImp implements IngredientFascade {
 			hasError = true;
 		}
 		
-		if (ingredient.getName() == null ){
+		if (ingredient.getName() == null || "".equals(ingredient.getName().trim())){
 			hasError = true;
 		}
 		
-
 		if (hasError){
-			throw new IllegalArgumentException("The category is missing data. Check the name and weight, they should have value.");
+			throw new IllegalArgumentException("The ingredient is missing data. Check the name and price, they should have value.");
 		}
 	}
-
-	}
+}
