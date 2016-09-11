@@ -33,6 +33,44 @@ public class UserMB {
 
 		return user;
 	}
+	private String userEmail;
+	
+	public String getUserEmail() {
+		if(userEmail==null)
+			userEmail=new String();
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public String changePasswordByAdmin(){		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		user = userFacade.findUserByEmail(userEmail);	
+		if(user==null){
+			FacesMessage msg = new FacesMessage("User with this email doesn't exist");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			fc.addMessage(oldPassword, msg);
+			fc.renderResponse();
+			return null;
+		}
+//		if (!newPassword.equals(repeatedNewPassword)) {
+//			FacesMessage msg = new FacesMessage(
+//					"Password must match each other");
+//			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+//			fc.addMessage(newPassword, msg);
+//			fc.renderResponse();
+//			return null;
+//		}		
+		getUser().setPassword(newPassword);
+		userFacade.update(user);
+		FacesMessage msg = new FacesMessage("Password changed");
+		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		fc.addMessage(oldPassword, msg);
+		fc.renderResponse();
+		return "categories";
+	}
 
 	public String newPassword;
 	public String oldPassword;
